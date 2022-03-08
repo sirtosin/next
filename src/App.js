@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef, useEffect, useState } from "react";
+import Paypal from "./Paypal";
 
 function App() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [price, setPrice] = useState('');
+
+  const handleChange = (e) => {
+    setName(e.target.value);
+  };
+  const handleChange1 = (e) => {
+    setEmail(e.target.value);
+  };
+  const handleChange2 = (e) => {
+    setPrice(e.target.value);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="name">
+        <h1>make a paypal payment</h1>
+        <label htmlFor="name">name</label>
+        <input type="text" onChange={handleChange} />
+        <label htmlFor="email">name</label>
+        <input type="email" onChange={handleChange1} />
+        <input
+          type="text"
+          value={price}
+          onChange={handleChange2}
+        />
+      </div>
+
+      <Paypal price={price} />
+      {console.log("55", price)}
     </div>
   );
 }
